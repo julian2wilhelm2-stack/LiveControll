@@ -8,18 +8,10 @@ app = Flask(__name__, static_folder='public', static_url_path='')
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
+@app.route('/Pfadfinder')
+def pfadfinder():
+    return app.send_static_file('index.html')
 
-# 2. PARAMETER-WEITERGABE
-# Liest Query-Parameter aus (z.B. http://localhost:5000/api?name=Max&alter=18)
-@app.route('/api')
-def api():
-    name = request.args.get('name', 'Unbekannter')
-    alter = request.args.get('alter', 'unbekannt')
-    
-    return jsonify({
-        "nachricht": f"Hallo {name}! Du bist {alter} Jahre alt.",
-        "empfangeneParameter": request.args
-    })
 
 if __name__ == '__main__':
     # Server starten auf Port 5000
